@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>❤️ Dla Nataszy ❤️</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    height:100vh;
+    overflow:hidden;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-family:Arial, sans-serif;
+
+    background:
+    linear-gradient(135deg,#ff4d6d,#ff758f,#ffc2d1);
+
+}
+
+
+/* główne okno */
+
+.container{
+
+    width:90%;
+    max-width:700px;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:30px;
+
+    text-align:center;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.3);
+
+    z-index:5;
+
+}
+
+
+/* napisy */
+
+h1{
+
+    color:#e63946;
+
+    font-size:45px;
+
+    margin-bottom:25px;
+
+}
+
+
+p{
+
+    color:#555;
+
+    font-size:22px;
+
+    line-height:1.6;
+
+}
+
+
+
+/* przycisk */
+
+button{
+
+    margin-top:35px;
+
+    padding:18px 40px;
+
+    border:none;
+
+    border-radius:50px;
+
+    background:#ff4d6d;
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+button:hover{
+
+    transform:scale(1.1);
+
+}
+
+
+
+/* zdjęcie */
+
+#surprise{
+
+    display:none;
+
+}
+
+
+
+.photo{
+
+    width:450px;
+
+    max-width:100%;
+
+    border-radius:25px;
+
+    border:8px solid #ff4d6d;
+
+    box-shadow:
+
+    0 0 50px rgba(255,77,109,.6);
+
+    animation:show 2s ease;
+
+}
+
+
+
+@keyframes show{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.5);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+
+
+/* serduszka */
+
+.heart{
+
+    position:absolute;
+
+    color:white;
+
+    animation:fall linear forwards;
+
+    z-index:1;
+
+}
+
+
+@keyframes fall{
+
+
+    from{
+
+        transform:translateY(-100px);
+
+        opacity:1;
+
+    }
+
+
+    to{
+
+        transform:translateY(110vh);
+
+        opacity:0;
+
+    }
+
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<audio id="music" loop preload="auto">
+    <source src="./iloveit.mp3" type="audio/mpeg">
+</audio>
+
+
+<div class="container">
+
+
+<h1>
+❤️ Dla Nataszy ❤️
+</h1>
+
+
+
+<p id="text">
+
+Nataszko ❤️<br><br>
+
+Przygotowałem dla Ciebie małą niespodziankę.<br>
+
+Kliknij poniżej ❤️
+
+</p>
+
+
+
+<button onclick="openGift()">
+
+💌 Otwórz niespodziankę
+
+</button>
+
+
+
+<div id="surprise">
+
+<img src="natasza.jpg" class="photo" alt="Natasza">
+
+</div>
+
+
+
+</div>
+
+
+
+<script>
+
+
+function openGift(){
+
+
+    // ukrycie tekstu i przycisku
+
+    document.querySelector("button").style.display="none";
+
+    document.getElementById("text").style.display="none";
+
+
+
+    // pokazanie zdjęcia
+
+    document.getElementById("surprise").style.display="block";
+
+
+
+    // uruchomienie muzyki
+
+    let music=document.getElementById("music");
+
+    music.volume=0.4;
+
+    music.play()
+.then(() => {
+    console.log("Muzyka działa");
+})
+.catch(error => {
+    console.log("Błąd muzyki:", error);
+});
+
+
+
+}
+
+
+
+
+// tworzenie serduszek
+
+
+function createHeart(){
+
+
+    let heart=document.createElement("div");
+
+
+    heart.className="heart";
+
+
+    heart.innerHTML="❤️";
+
+
+    heart.style.left=Math.random()*100+"vw";
+
+
+    heart.style.fontSize=
+    (15+Math.random()*35)+"px";
+
+
+    heart.style.animationDuration=
+    (4+Math.random()*5)+"s";
+
+
+
+    document.body.appendChild(heart);
+
+
+
+    setTimeout(()=>{
+
+        heart.remove();
+
+    },9000);
+
+
+}
+
+
+
+setInterval(createHeart,250);
+
+
+
+</script>
+
+
+</body>
+
+</html>
